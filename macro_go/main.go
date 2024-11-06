@@ -5,6 +5,7 @@ import (
 	"fmt"
 	"log"
 	"macro_go/utils"
+	"os"
 	"os/exec"
 	"regexp"
 	"strings"
@@ -14,7 +15,14 @@ import (
 )
 
 func main() {
+	if len(os.Args) < 3 {
+		fmt.Println("Please provide two program names as arguments.")
+		return
+	}
 
+	// Get the program names from the command-line arguments
+	program1 := os.Args[1]
+	program2 := os.Args[2]
 	brPtr := flag.Int("baudrate", 9600, "Baudrate")
 	// portPtr := flag.String("port", "", "Serial Port")
 	flag.Parse()
@@ -66,9 +74,10 @@ func main() {
 				var app string
 				switch filter {
 				case "1":
-					app = ".spotify-wrapped"
+					app = program1
 				case "2":
-					app = "chromium"
+					app = program2
+
 				}
 
 				switch pat {

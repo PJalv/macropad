@@ -91,8 +91,8 @@ void readKeyPad() {
         break;
       case '2':
         sendCommand(
-            "pactl set-default-sink $(pactl list sinks short | grep -v $(pactl "
-            "get-default-sink) | grep -oP 'alsa_output[^\\s]+' | head -n 1)");
+            "pactl set-default-sink $(pactl list sinks short | grep -v $(pactl " 
+            "get-default-sink) | grep -vE 'Microphone|microphone' | grep -oP 'alsa_output[^\\s]+' | head -n 1)");
         break;
       case '3':
         sendCommand("notify-send Testing notifications");
